@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\LayananKontenMultimediaController;
 use App\Http\Controllers\Admin\LayananSPLPController;
 use App\Http\Controllers\Admin\LayananVPNController;
 use App\Http\Controllers\Admin\LayananZoomController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\HomepageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +21,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::get('/', [HomepageController::class,'index'])->name('home');
 Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
 
 
 //dashboard routes
 Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' => 'admin.'], function () {
     //single action controllers
-    Route::get('/', HomeController::class)->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     //link that return view, to get compoment from there
     Route::view('/buttons', 'admin.buttons')->name('buttons');
@@ -38,11 +42,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' => 'admin.
       // Routes to LayananZoomController
       Route::get('/layananZoom', [LayananZoomController::class, 'index'])->name('layananZoom');
       Route::get('/layananZoom/{id}/edit', [LayananZoomController::class, 'edit'])->name('layananZoom.edit');
+      Route::get('/layananZoom/create', [LayananZoomController::class, 'create'])->name('layananZoom.create');
+      Route::post('/layananZoom', [LayananZoomController::class, 'store'])->name('layananZoom.store');
       Route::put('/layananZoom/{id}', [LayananZoomController::class, 'update'])->name('layananZoom.update');
       Route::delete('/layananZoom/{id}', [LayananZoomController::class, 'destroy'])->name('layananZoom.destroy');
 
       //Routes to LayananVPNController
       Route::get('/layananVPN', [LayananVPNController::class, 'index'])->name('layananVPN');
+      Route::get('/layananVPN/create', [LayananVPNController::class, 'index'])->name('layananVPN.create');
       Route::get('/layananVPN/{id}/edit', [LayananVPNController::class, 'edit'])->name('layananVPN.edit');
       Route::put('/layananVPN/{id}', [LayananVPNController::class, 'update'])->name('layananVPN.update');
       Route::delete('/layananVPN/{id}', [LayananVPNController::class, 'destroy'])->name('layananVPN.destroy');
@@ -52,6 +59,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' => 'admin.
       Route::get('/layananSPLP/{id}/edit', [LayananSPLPController::class, 'edit'])->name('layananSPLP.edit');
       Route::put('/layananSPLP/{id}', [LayananSPLPController::class, 'update'])->name('layananSPLP.update');
       Route::delete('/layananSPLP/{id}', [LayananSPLPController::class, 'destroy'])->name('layananSPLP.destroy');
+      //Routes to LayananKontenMultimedia
+      Route::get('/layananKM', [LayananKontenMultimediaController::class, 'index'])->name('layananKM');
+      Route::get('/layananKM/create', [LayananKontenMultimediaController::class, 'index'])->name('layananKM.create');
+      Route::get('/layananKM/{id}/edit', [LayananKontenMultimediaController::class, 'edit'])->name('layananKM.edit');
+      Route::put('/layananKM/{id}', [LayananKontenMultimediaController::class, 'update'])->name('layananKM.update');
+      Route::delete('/layananKM/{id}', [LayananKontenMultimediaController::class, 'destroy'])->name('layananKM.destroy');
+
 
 
 

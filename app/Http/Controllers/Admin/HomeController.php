@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -13,8 +16,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __invoke()
+    public function index():View
     {
-        return view('admin.index');
+        $user = Auth::user();
+        $totalLayananZoom = DB::table('layanan_zoom')->count();
+        return view('admin.index',compact('user','totalLayananZoom'));
     }
 }

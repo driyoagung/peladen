@@ -10,4 +10,8 @@ class Kategori extends Model
     protected $table = 'kategori';
 
     use HasFactory;
+    public function layananZoom()
+    {
+        return $this->hasMany(LayananZoom::class, 'kategori_id');
+    }
 }

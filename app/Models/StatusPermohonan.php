@@ -10,4 +10,8 @@ class StatusPermohonan extends Model
     protected $table = 'status_permohonan';
     
     use HasFactory;
+    public function layananZoom()
+    {
+        return $this->hasMany(LayananZoom::class, 'status_permohonan_id');
+    }
 }

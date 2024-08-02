@@ -103,66 +103,21 @@
     <div id="layanan" class="my-12 mx-auto max-w-screen-lg pt-20 px-4 sm:px-6 md:px-8 lg:px-16">
       <div class="container mx-auto flex justify-center">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-16">
+          @foreach ($kategoris as $kategori)              
           <a href="#domain" class="block no-underline myButton">
-            <div class="relative flex flex-col items-center text-gray-700 bg-white shadow-xl rounded-xl w-32 h-32 transition-transform duration-500 hover:scale-105 cursor-pointer">
+            <div class="relative font-semibold h-auto w-auto flex flex-col items-center text-gray-700 bg-white shadow-xl rounded-xl w-32 h-32 transition-transform duration-500 hover:scale-105 cursor-pointer">
               <div class="p-6 flex flex-col items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="35" height="35" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="color: rgb(0, 191, 166); font-weight: bold;" class="mb-4">
                   <path fill="currentColor" d="M22 12A10 10 0 0 0 12 2a10 10 0 0 0 0 20a10 10 0 0 0 10-10zm-2.07-1H17a12.91 12.91 0 0 0-2.33-6.54A8 8 0 0 1 19.93 11zM9.08 13H15a11.44 11.44 0 0 1-3 6.61A11 11 0 0 1 9.08 13zm0-2A11.4 11.4 0 0 1 12 4.4a11.19 11.19 0 0 1 3 6.6zm.36-6.57A13.18 13.18 0 0 0 7.07 11h-3a8 8 0 0 1 5.37-6.57zM4.07 13h3a12.86 12.86 0 0 0 2.35 6.56A8 8 0 0 1 4.07 13zm10.55 6.55A13.14 13.14 0 0 0 17 13h2.95a8 8 0 0 1-5.33 6.55z"></path>
                 </svg>
-                <h6 class="text-center">Subdomain</h6>
+                <h6 class="text-center">{{ $kategori->kategori_layanan }}</h6>
               </div>
             </div>
           </a>
-          <a href="#domain" class="block no-underline">
-            <div class="relative flex flex-col items-center text-gray-700 bg-white shadow-xl rounded-xl w-32 h-32 transition-transform duration-500 hover:scale-105 cursor-pointer">
-              <div class="p-6 flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="35" height="35" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="color: rgb(0, 191, 166); font-weight: bold;" class="mb-4">
-                  <path fill="currentColor" d="M22 12A10 10 0 0 0 12 2a10 10 0 0 0 0 20a10 10 0 0 0 10-10zm-2.07-1H17a12.91 12.91 0 0 0-2.33-6.54A8 8 0 0 1 19.93 11zM9.08 13H15a11.44 11.44 0 0 1-3 6.61A11 11 0 0 1 9.08 13zm0-2A11.4 11.4 0 0 1 12 4.4a11.19 11.19 0 0 1 3 6.6zm.36-6.57A13.18 13.18 0 0 0 7.07 11h-3a8 8 0 0 1 5.37-6.57zM4.07 13h3a12.86 12.86 0 0 0 2.35 6.56A8 8 0 0 1 4.07 13zm10.55 6.55A13.14 13.14 0 0 0 17 13h2.95a8 8 0 0 1-5.33 6.55z"></path>
-                </svg>
-                <h6 class="text-center">Subdomain</h6>
-              </div>
-            </div>
-          </a>
-          <a href="#domain" class="block no-underline">
-            <div class="relative flex flex-col items-center text-gray-700 bg-white shadow-xl rounded-xl w-32 h-32 transition-transform duration-500 hover:scale-105 cursor-pointer">
-              <div class="p-6 flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="35" height="35" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="color: rgb(0, 191, 166); font-weight: bold;" class="mb-4">
-                  <path fill="currentColor" d="M22 12A10 10 0 0 0 12 2a10 10 0 0 0 0 20a10 10 0 0 0 10-10zm-2.07-1H17a12.91 12.91 0 0 0-2.33-6.54A8 8 0 0 1 19.93 11zM9.08 13H15a11.44 11.44 0 0 1-3 6.61A11 11 0 0 1 9.08 13zm0-2A11.4 11.4 0 0 1 12 4.4a11.19 11.19 0 0 1 3 6.6zm.36-6.57A13.18 13.18 0 0 0 7.07 11h-3a8 8 0 0 1 5.37-6.57zM4.07 13h3a12.86 12.86 0 0 0 2.35 6.56A8 8 0 0 1 4.07 13zm10.55 6.55A13.14 13.14 0 0 0 17 13h2.95a8 8 0 0 1-5.33 6.55z"></path>
-                </svg>
-                <h6 class="text-center">Subdomain</h6>
-              </div>
-            </div>
-          </a>
-          <a href="#domain" class="block no-underline">
-            <div class="relative flex flex-col items-center text-gray-700 bg-white shadow-xl rounded-xl w-32 h-32 transition-transform duration-500 hover:scale-105 cursor-pointer">
-              <div class="p-6 flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="35" height="35" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="color: rgb(0, 191, 166); font-weight: bold;">
-                  <path fill="currentColor" d="M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM9 12h3a1 1 0 0 1 0 2H9a1 1 0 0 1 0-2zm6 6H9a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm-.29-10a.79.79 0 0 1-.71-.85V4l3.74 4z"></path>
-                </svg>
-                <h6 class="text-center">Subdomain</h6>
-              </div>
-            </div>
-          </a>
-          <a href="#domain" class="block no-underline">
-            <div class="relative flex flex-col items-center text-gray-700 bg-white shadow-xl rounded-xl w-32 h-32 transition-transform duration-500 hover:scale-105 cursor-pointer">
-              <div class="p-6 flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="35" height="35" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="color: rgb(0, 191, 166); font-weight: bold;">
-                  <path fill="currentColor" d="M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM9 12h3a1 1 0 0 1 0 2H9a1 1 0 0 1 0-2zm6 6H9a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm-.29-10a.79.79 0 0 1-.71-.85V4l3.74 4z"></path>
-                </svg>
-                <h6 class="text-center">Subdomain</h6>
-              </div>
-            </div>
-          </a>
-          <a href="#domain" class="block no-underline">
-            <div class="relative flex flex-col items-center text-gray-700 bg-white shadow-xl rounded-xl w-32 h-32 transition-transform duration-500 hover:scale-105 cursor-pointer">
-              <div class="p-6 flex flex-col items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="35" height="35" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" style="color: rgb(0, 191, 166); font-weight: bold;">
-                  <path fill="currentColor" d="M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM9 12h3a1 1 0 0 1 0 2H9a1 1 0 0 1 0-2zm6 6H9a1 1 0 0 1 0-2h6a1 1 0 0 1 0 2zm-.29-10a.79.79 0 0 1-.71-.85V4l3.74 4z"></path>
-                </svg>
-                <h6 class="text-center">Subdomain</h6>
-              </div>
-            </div>
-          </a>
+          @endforeach
+
+          
+          
           <!-- Tambahkan div lainnya sesuai kebutuhan -->
         </div>
       </div>
@@ -173,7 +128,7 @@
     <!-- informasi -->
     <div class="flex items-center justify-center px-4 md:px-8 lg:px-12 py-4">
       <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-4 border-t border-gray-300">
-        <img src="{{ asset('assets/img/logo-bsre.png') }}" alt="Logo" class="h-24 md:h-32 lg:h-40" />
+        <img src="{{ asset('img/logo-bsre.png') }}" alt="Logo" class="h-24 md:h-32 lg:h-40" />
         <div class="text-center md:text-left">
           <p class="text-sm md:text-base text-gray-700">
             peladen.surakarta.go.id sudah mendukung tanda tangan elektronik dari Balai Sertifikasi Elektronik (BSrE)
@@ -189,13 +144,15 @@
     <!-- end informasi -->
 
     <!-- daftar layanan -->
+    @foreach ($kategoris as $kategori)
+        
     <div id="domain" class="bg-gradient-to-r from-green-100 to-green-500 flex flex-col md:flex-row items-center justify-center px-6 md:px-12 lg:px-24 py-14 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0" data-taos-offset="300">
       <div class="flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-8 p-4 md:p-8">
         <div class="flex-shrink-0">
           <img src="{{ asset('assets/img/home-side.png') }}"  alt="WWW" class="h-32 w-32 md:h-40 md:w-40" />
         </div>
         <div>
-          <h2 class="text-xl md:text-2xl font-bold mb-4">Subdomain</h2>
+          <h2 class="text-xl md:text-2xl font-bold mb-4">{{ $kategori->kategori_layanan }}</h2>
           <p class="text-gray-700 mb-6 text-sm md:text-base">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, ipsam nihil optio inventore ullam totam unde neque, quos, mollitia quasi iusto velit aspernatur ducimus placeat fuga explicabo repellat temporibus excepturi?
             Quam voluptas harum earum laboriosam ratione recusandae modi ipsa molestiae. Assumenda illum itaque ad suscipit quae error. Recusandae quibusdam placeat sint delectus nam quo itaque omnis illum voluptatibus dolor maiores
@@ -217,6 +174,8 @@
         </div>
       </div>
     </div>
+    @endforeach
+
     
     <!-- end daftar -->
 
@@ -270,7 +229,7 @@
   </body>
   <script>
     function login() {
-      window.location.href = 'login.html';
+      window.location.href = '/login';
   }
   
     document.addEventListener('DOMContentLoaded', function() {

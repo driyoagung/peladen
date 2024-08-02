@@ -15,9 +15,28 @@ class UserSeeder extends Seeder
         DB::table('users')->delete();
 
         User::create([
-            'email' => 'ardi@gmail.com',
-            'name' => "ardi",
-            "password" => Hash::make('ardi123')
+            'email' => 'admin@gmail.com',
+            'name' => "admin",
+            'role' => "admin",
+            "password" => Hash::make('admin123')
+        ]);
+        User::create([
+            'email' => 'superadmin@gmail.com',
+            'name' => "superadmin",
+            'role' => "superadmin",
+            "password" => Hash::make('superadmin123')
+        ]);
+        User::create([
+            'email' => 'opd@gmail.com',
+            'name' => "User OPD",
+            'role' => "opd",
+            "password" => Hash::make('opd123')
+        ]);
+        User::create([
+            'email' => 'verifikator@gmail.com',
+            'name' => "verifikator",
+            'role' => "verifikator",
+            "password" => Hash::make('verifikator123')
         ]);
     }
 }
