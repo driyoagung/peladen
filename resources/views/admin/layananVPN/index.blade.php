@@ -5,16 +5,19 @@
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         Tables
     </h2>
+    <!-- Alert Sukses -->
+    @if (session('success'))
+    <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
+        <p class="font-bold">Berhasil!</p>
+        <p class="text-sm">{{ session('success') }}</p>
+    </div>
+    @endif
 
     <!-- With actions -->
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
         Table Layanan VPN
     </h4>
-    <div class="mb-4">
-        <a href="{{ route('admin.layananVPN.create') }}" class="px-4 py-2 text-sm font-medium leading-5 text-white bg-purple-600 rounded-lg focus:outline-none focus:shadow-outline-purple">
-            Create New Layanan VPN
-        </a>
-    </div>
+    
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">
@@ -138,6 +141,7 @@
                             </button>
                         </li>
                         <li>
+                            
                             <button
                                 class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
                                 9

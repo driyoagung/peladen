@@ -18,11 +18,7 @@
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
         Table Layanan Zoom
     </h4>
-    <div class="mb-4">
-        <a href="{{ route('admin.layananZoom.create') }}" class="px-4 py-2 text-sm font-medium leading-5 text-white bg-purple-600 rounded-lg focus:outline-none focus:shadow-outline-purple">
-            Create New Layanan Zoom
-        </a>
-    </div>
+    
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">

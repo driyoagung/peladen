@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class LayananSPLP extends Model
 {
     protected $table = "layanan_splp";
+    protected $fillable = [
+        'nama_pemohon',
+        'nip_nik',
+        'nama_api',
+        'nama_aplikasi_website',
+        'unit_kerja',
+        'tanggal_permohonan',
+        'waktu_permohonan',
+        'kategori_id',
+        'perangkat_daerah_id',
+        'status_permohonan_id',
+    ];
     use HasFactory;
 
     public function statusPermohonan()

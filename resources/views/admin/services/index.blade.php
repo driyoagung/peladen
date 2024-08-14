@@ -5,10 +5,18 @@
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         Tables
     </h2>
+      <!-- Alert Sukses -->
+      @if (session('success'))
+      <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
+          <p class="font-bold">Berhasil!</p>
+          <p class="text-sm">{{ session('success') }}</p>
+      </div>
+      @endif
+
 
     <!-- With actions -->
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-        Table Layanan SPLP
+        Table Layanan Services
     </h4>
     
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -16,53 +24,24 @@
             <table class="w-full whitespace-no-wrap">
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                        <th class="px-4 py-3">Nama Pemohon</th>
-                        <th class="px-4 py-3">NIP/NIK</th>
-                        <th class="px-4 py-3">Nama Aplikasi</th>
-                        <th class="px-4 py-3">Unit Kerja</th>
-                        <th class="px-4 py-3">Tanggal Permohonan</th>
-                        <th class="px-4 py-3">Waktu Permohonan</th>
-                        <th class="px-4 py-3">Kategori</th>
-                        <th class="px-4 py-3">Perangkat Daerah</th>
-                        <th class="px-4 py-3">Status Permohonan</th>
-                        <th class="px-4 py-3">Actions</th>
+                        <th class="px-4 py-3">Nama Kategori</th>
+                        <th class="px-4 py-3">Deskripsi</th>
+                        
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    @foreach($layananSPLPs as $layananSPLP)
+                      @foreach($kategoris as $kategori)
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-4 py-3">{{ $layananSPLP->nama_pemohon }}</td>
-                        <td class="px-4 py-3">{{ $layananSPLP->nip_nik }}</td>
-                        <td class="px-4 py-3">{{ $layananSPLP->nama_aplikasi_website }}</td>
-                        <td class="px-4 py-3">{{ $layananSPLP->unit_kerja }}</td>
-                        <td class="px-4 py-3">{{ $layananSPLP->tanggal_permohonan ? \Carbon\Carbon::parse($layananSPLP->tanggal_permohonan)->format('d/m/Y') : 'N/A' }}</td>
-                        <td class="px-4 py-3">{{ $layananSPLP->waktu_permohonan ? \Carbon\Carbon::parse($layananSPLP->waktu_permohonan)->format('H:i') : 'N/A' }}</td>
-                        <td class="px-4 py-3">{{ $layananSPLP->kategori ? $layananSPLP->kategori->kategori_layanan : 'N/A' }}</td>
-                        <td class="px-4 py-3">{{ $layananSPLP->perangkatDaerah ? $layananSPLP->perangkatDaerah->perangkat_daerah : 'N/A' }}</td>
-                        <td class="px-4 py-3">
-                            @php
-                                $status = $layananSPLP->statusPermohonan ? $layananSPLP->statusPermohonan->status : 'N/A';
-                                $badgeColor = match ($status) {
-                                    'Approved' => 'bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100',
-                                    'Pending' => 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100',
-                                    'Rejected' => 'bg-red-100 text-red-700 dark:bg-gray-700 dark:text-red-100',
-                                    'In Progress' => 'bg-yellow-100 text-yellow-700 dark:bg-yellow-700 dark:text-yellow-100',
-                                    'Completed' => 'bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-700',
-                                    default => 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-100',
-                                };
-                            @endphp
-                            <span class="px-2 py-1 font-semibold leading-tight {{ $badgeColor }} rounded-full">
-                                {{ $status }}
-                            </span>
-                        </td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-3">{{ $kategori->kategori_layanan }}</td>
+                        <td class="px-4 py-3">{{ $kategori->deskripsi }}</td>
+                        {{-- <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">
-                                <a href="{{ route('admin.layananSPLP.edit', $layananSPLP->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
+                                <a href="{{ route('admin.layananTTE.edit', $layananTTE->id) }}" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Edit">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                     </svg>
                                 </a>
-                                <form action="{{ route('admin.layananSPLP.destroy', $layananSPLP->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <form action="{{ route('admin.layananTTE.destroy', $layananTTE->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
@@ -72,7 +51,7 @@
                                     </button>
                                 </form>
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

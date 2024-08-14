@@ -62,6 +62,11 @@ class LayananVPNController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $layananVPN = layananVPN::find($id); // Temukan data berdasarkan ID
+        if (!$layananVPN) {
+            return redirect()->route('admin.layananVPN')->with('error', 'Data tidak ditemukan!');
+        }
+        $layananVPN->delete();
+        return redirect()->route('admin.layananVPN')->with('success', 'Data berhasil dihapus!');
     }
 }

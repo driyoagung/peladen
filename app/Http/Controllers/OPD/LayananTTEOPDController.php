@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\OPD;
 
 use App\Http\Controllers\Controller;
-use App\Models\LayananKontenMultimedia;
+use App\Models\LayananTTE;
 use Illuminate\Http\Request;
 
-class LayananKontenMultimediaController extends Controller
+class LayananTTEOPDController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $layananKMs = LayananKontenMultimedia::all(); // Ambil semua data dari tabel layanan_zoom
-        return view('admin.layananKM.index', compact('layananKMs'));
+        $layananTTEs = LayananTTE::all(); // Ambil semua data dari tabel LayananTTE
+        return view('opd.layananTTE.index', compact('layananTTEs'));
     }
 
     /**
@@ -46,7 +46,7 @@ class LayananKontenMultimediaController extends Controller
      */
     public function edit(string $id)
     {
-        return "mantap bang";
+        //
     }
 
     /**
@@ -62,11 +62,6 @@ class LayananKontenMultimediaController extends Controller
      */
     public function destroy(string $id)
     {
-        $layananKM = LayananKontenMultimedia::find($id); // Temukan data berdasarkan ID
-        if (!$layananKM) {
-            return redirect()->route('admin.layananKM')->with('error', 'Data tidak ditemukan!');
-        }
-        $layananKM->delete();
-        return redirect()->route('admin.layananKM')->with('success', 'Data berhasil dihapus!');
+        //
     }
 }

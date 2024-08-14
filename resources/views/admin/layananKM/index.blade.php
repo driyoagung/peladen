@@ -3,18 +3,21 @@
 @section('content')
 <div class="container grid px-6 mx-auto">
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        Tables
+        Tables 
     </h2>
+     <!-- Alert Sukses -->
+     @if (session('success'))
+     <div class="bg-green-100 bg-gradient-to-r border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
+         <p class="font-bold">Berhasil!</p>
+         <p class="text-sm">{{ session('success') }}</p>
+     </div>
+     @endif
 
     <!-- With actions -->
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
         Table Layanan Konten Multimedia
     </h4>
-    <div class="mb-4">
-        <a href="{{ route('admin.layananKM.create') }}" class="px-4 py-2 text-sm font-medium leading-5 text-white bg-purple-600 rounded-lg focus:outline-none focus:shadow-outline-purple">
-            Create New Layanan Konten Multimedia
-        </a>
-    </div>
+    
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
             <table class="w-full whitespace-no-wrap">
@@ -22,7 +25,7 @@
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Nama Pemohon</th>
                         <th class="px-4 py-3">NIP/NIK</th>
-                        <th class="px-4 py-3">Nama Aplikasi</th>
+                        <th class="px-4 py-3">Peruntukan</th>
                         <th class="px-4 py-3">Unit Kerja</th>
                         <th class="px-4 py-3">Tanggal Permohonan</th>
                         <th class="px-4 py-3">Waktu Permohonan</th>
@@ -37,7 +40,7 @@
                     <tr class="text-gray-700 dark:text-gray-400">
                         <td class="px-4 py-3">{{ $layananKM->nama_pemohon }}</td>
                         <td class="px-4 py-3">{{ $layananKM->nip_nik }}</td>
-                        <td class="px-4 py-3">{{ $layananKM->nama_aplikasi_website }}</td>
+                        <td class="px-4 py-3">{{ $layananKM->peruntukan }}</td>
                         <td class="px-4 py-3">{{ $layananKM->unit_kerja }}</td>
                         <td class="px-4 py-3">{{ $layananKM->tanggal_permohonan ? \Carbon\Carbon::parse($layananKM->tanggal_permohonan)->format('d/m/Y') : 'N/A' }}</td>
                         <td class="px-4 py-3">{{ $layananKM->waktu_permohonan ? \Carbon\Carbon::parse($layananKM->waktu_permohonan)->format('H:i') : 'N/A' }}</td>

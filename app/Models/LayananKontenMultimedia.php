@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class LayananKontenMultimedia extends Model
 {
     use HasFactory;
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
+
+    public function perangkatDaerah()
+    {
+        return $this->belongsTo(PerangkatDaerah::class, 'perangkat_daerah_id');
+    }
+
+    public function statusPermohonan()
+    {
+        return $this->belongsTo(StatusPermohonan::class, 'status_permohonan_id');
+    }
 }

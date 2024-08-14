@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\LayananKontenMultimedia;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
-class LayananKontenMultimediaController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $layananKMs = LayananKontenMultimedia::all(); // Ambil semua data dari tabel layanan_zoom
-        return view('admin.layananKM.index', compact('layananKMs'));
+        $kategoris = Kategori::all();
+        return view("admin.services.index",compact("kategoris"));
     }
 
     /**
@@ -46,7 +46,7 @@ class LayananKontenMultimediaController extends Controller
      */
     public function edit(string $id)
     {
-        return "mantap bang";
+        //
     }
 
     /**
@@ -62,11 +62,6 @@ class LayananKontenMultimediaController extends Controller
      */
     public function destroy(string $id)
     {
-        $layananKM = LayananKontenMultimedia::find($id); // Temukan data berdasarkan ID
-        if (!$layananKM) {
-            return redirect()->route('admin.layananKM')->with('error', 'Data tidak ditemukan!');
-        }
-        $layananKM->delete();
-        return redirect()->route('admin.layananKM')->with('success', 'Data berhasil dihapus!');
+        //
     }
 }
