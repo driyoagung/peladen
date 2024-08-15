@@ -14,7 +14,7 @@ class ServiceController extends Controller
     public function index()
     {
         $kategoris = Kategori::all();
-        return view("admin.services.index",compact("kategoris"));
+        return view("admin.services.index", compact("kategoris"));
     }
 
     /**
@@ -22,7 +22,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.services.create');
     }
 
     /**
@@ -30,7 +30,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request data
+        $request->validate([
+            'kategori_layanan' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        // Create a new category
+        Kategori::create([
+            'kategori_layanan' => $request->kategori_layanan,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        // Redirect with success message
+        return redirect()->route('admin.service')->with('success', 'Layanan berhasil ditambahkan!');
     }
 
     /**
@@ -38,7 +51,8 @@ class ServiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        return view('admin.services.show', compact('kategori'));
     }
 
     /**
@@ -46,7 +60,8 @@ class ServiceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        return view('admin.services.edit', compact('kategori'));
     }
 
     /**
@@ -54,7 +69,21 @@ class ServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate the request data
+        $request->validate([
+            'kategori_layanan' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        // Find the category and update it
+        $kategori = Kategori::findOrFail($id);
+        $kategori->update([
+            'kategori_layanan' => $request->kategori_layanan,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        // Redirect with success message
+        return redirect()->route('admin.service')->with('success', 'Layanan berhasil diperbarui!');
     }
 
     /**
@@ -62,6 +91,11 @@ class ServiceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the category and delete it
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+
+        // Redirect with success message
+        return redirect()->route('admin.service')->with('success', 'Kategori berhasil dihapus!');
     }
 }

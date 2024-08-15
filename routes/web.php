@@ -55,7 +55,17 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' => 'admin.
     Route::delete('/layananZoom/{id}', [LayananZoomController::class, 'destroy'])->name('layananZoom.destroy');
 
     // Routes to Services
-    Route::get('/service',[ServiceController::class,'index'])->name('service');
+    // Route::get('/service',[ServiceController::class,'index'])->name('service');
+    // Routes to KategoriController
+    Route::get('/service', [ServiceController::class, 'index'])->name('service');
+    Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
+    Route::post('/service', [ServiceController::class, 'store'])->name('service.store');
+    Route::get('/service/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+    Route::put('/service/{id}', [ServiceController::class, 'update'])->name('service.update');
+    Route::delete('/service/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+    
+
 
     // Routes to LayananVPNController
     Route::get('/layananVPN', [LayananVPNController::class, 'index'])->name('layananVPN');

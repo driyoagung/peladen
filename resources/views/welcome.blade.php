@@ -184,7 +184,7 @@
             <div>
                 <h2 class="text-xl md:text-2xl font-bold mb-4">{{ $kategori->kategori_layanan }}</h2>
                 <p class="text-gray-700 mb-6 text-sm md:text-base">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                  {{ $kategori->deskripsi }}
                 </p>
                 <button
                     onclick="login()"
