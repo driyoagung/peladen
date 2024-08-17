@@ -15,6 +15,13 @@ use App\Http\Controllers\OPD\LayananSPLPOPDController;
 use App\Http\Controllers\OPD\LayananTTEOPDController;
 use App\Http\Controllers\OPD\LayananVPNOPDController;
 use App\Http\Controllers\OPD\LayananZoomOPDController;
+use App\Http\Controllers\superadmin\UserSuperAdminController;
+use App\Http\Controllers\Verifikator\DashboardVerifController;
+use App\Http\Controllers\Verifikator\LayananKMVerifController;
+use App\Http\Controllers\Verifikator\LayananSPLPVerifController;
+use App\Http\Controllers\Verifikator\LayananTTEVerifController;
+use App\Http\Controllers\Verifikator\LayananVPNVerifController;
+use App\Http\Controllers\Verifikator\LayananZoomVerifController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +62,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' => 'admin.
     Route::delete('/layananZoom/{id}', [LayananZoomController::class, 'destroy'])->name('layananZoom.destroy');
 
     // Routes to Services
+    // Routes Download PDF Layanan Zoom
+    Route::get('/downloadPDF', [LayananSPLPController::class,'downloadPDF'])->name('downloadPDF');
     // Route::get('/service',[ServiceController::class,'index'])->name('service');
     // Routes to KategoriController
     Route::get('/service', [ServiceController::class, 'index'])->name('service');
@@ -63,8 +72,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' => 'admin.
     Route::get('/service/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
     Route::put('/service/{id}', [ServiceController::class, 'update'])->name('service.update');
     Route::delete('/service/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
-
-    
 
 
     // Routes to LayananVPNController
@@ -121,5 +128,51 @@ Route::group(['middleware' => ['auth', 'role:opd'], 'prefix' => 'opd', 'as' => '
   Route::get('/layanan-tte/create', [LayananTTEOPDController::class, 'create'])->name('layananTTE.create');
   // Tambahkan rute lainnya sesuai kebutuhan
 });
+Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->name('superadmin.')->group(function () {
+  Route::resource('users', UserSuperAdminController::class);
+});
+// Rute untuk Verifikator
+Route::middleware(['auth', 'role:verifikator'])->prefix('verifikator')->group(function () {
+  // Routes for Layanan Zoom Verif
+  Route::get('/layananZoom', [LayananZoomVerifController::class, 'index'])->name('verifikator.layananZoom');
+  Route::get('/layananZoom/create', [LayananZoomVerifController::class, 'create'])->name('verifikator.layananZoom.create');
+  Route::get('/dashboard', [DashboardVerifController::class, 'index'])->name('verifikator.dashboard');
+  Route::get('/layananZoom/{id}/edit', [LayananZoomVerifController::class, 'edit'])->name('verifikator.layananZoom.edit');
+  Route::put('/layananZoom/{id}', [LayananZoomVerifController::class, 'update'])->name('verifikator.layananZoom.update');
+  Route::delete('/layananZoom/{id}', [LayananZoomVerifController::class, 'destroy'])->name('verifikator.layananZoom.destroy');
+
+
+
+  
+
+
+
+  // Routes for Layanan VPN Verif
+  Route::get('/layananVPN', [LayananVPNVerifController::class, 'index'])->name('verifikator.layananVPN');
+  Route::get('/layananVPN/{id}/edit', [LayananVPNVerifController::class, 'edit'])->name('verifikator.layananVPN.edit');
+  Route::put('/layananVPN/{id}', [LayananVPNVerifController::class, 'update'])->name('verifikator.layananVPN.update');
+  Route::delete('/layananVPN/{id}', [LayananVPNVerifController::class, 'destroy'])->name('verifikator.layananVPN.destroy');
+
+  // Routes for Layanan SPLP Verif
+  Route::get('/layananSPLP', [LayananSPLPVerifController::class, 'index'])->name('verifikator.layananSPLP');
+  Route::get('/layananSPLP/{id}/edit', [LayananSPLPVerifController::class, 'edit'])->name('verifikator.layananSPLP.edit');
+  Route::put('/layananSPLP/{id}', [LayananSPLPVerifController::class, 'update'])->name('verifikator.layananSPLP.update');
+  Route::delete('/layananSPLP/{id}', [LayananSPLPVerifController::class, 'destroy'])->name('verifikator.layananSPLP.destroy');
+
+  // Routes for Layanan TTE Verif
+  Route::get('/layananTTE', [LayananTTEVerifController::class, 'index'])->name('verifikator.layananTTE');
+  Route::get('/layananTTE/{id}/edit', [LayananTTEVerifController::class, 'edit'])->name('verifikator.layananTTE.edit');
+  Route::put('/layananTTE/{id}', [LayananTTEVerifController::class, 'update'])->name('verifikator.layananTTE.update');
+  Route::delete('/layananTTE/{id}', [LayananTTEVerifController::class, 'destroy'])->name('verifikator.layananTTE.destroy');
+
+  // Routes for Layanan KM Verif
+  Route::get('/layananKM', [LayananKMVerifController::class, 'index'])->name('verifikator.layananKM');
+  Route::get('/layananKM/{id}/edit', [LayananKMVerifController::class, 'edit'])->name('verifikator.layananKM.edit');
+  Route::put('/layananKM/{id}', [LayananKMVerifController::class, 'update'])->name('verifikator.layananKM.update');
+  Route::delete('/layananKM/{id}', [LayananKMVerifController::class, 'destroy'])->name('verifikator.layananKM.destroy');
+});
+
+
+
 
 require __DIR__ . '/auth.php';

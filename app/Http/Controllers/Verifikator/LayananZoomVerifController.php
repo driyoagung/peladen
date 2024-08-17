@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Verifikator;
 
 use App\Http\Controllers\Controller;
-use App\Models\LayananSPLP;
+use App\Models\LayananZoom;
+use App\Models\StatusPermohonan;
 use Illuminate\Http\Request;
 
-class LayananSPLPController extends Controller
+class LayananZoomVerifController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $layananSPLPs = LayananSPLP::paginate(3); // Ambil semua data dari tabel layanan_zoom
-        return view('admin.layananSPLP.index', compact('layananSPLPs'));
+        $layananZooms = LayananZoom::all();
+        $statusOptions = ['Pending', 'Approved', 'Rejected', 'In Progress', 'Completed']; // Ambil semua data dari tabel layanan_zoom
+        return view('verifikator.layananZoom.index', compact('layananZooms','statusOptions'));
     }
 
     /**
@@ -22,8 +24,11 @@ class LayananSPLPController extends Controller
      */
     public function create()
     {
-        return view('welcome');
+        return ('verifikator berhasil wal');
     }
+    
+    
+
 
     /**
      * Store a newly created resource in storage.
@@ -32,14 +37,6 @@ class LayananSPLPController extends Controller
     {
         //
     }
-    public function downloadPDF(){
-        $mpdf = new \Mpdf\Mpdf();
-        $layananSPLPs = LayananSPLP::all();
-        $html = view('admin.layananSPLP.pdf', compact('layananSPLPs'))->render();
-        $mpdf->WriteHTML($html);
-        return $mpdf->Output('layanan_splp.pdf', 'D'); // 'D' untuk download, 'I' untuk inline view di browser
-    }
-   
 
     /**
      * Display the specified resource.

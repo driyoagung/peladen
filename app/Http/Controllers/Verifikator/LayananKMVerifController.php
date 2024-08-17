@@ -1,28 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Verifikator;
 
 use App\Http\Controllers\Controller;
-use App\Models\LayananSPLP;
+use App\Models\LayananKontenMultimedia;
 use Illuminate\Http\Request;
 
-class LayananSPLPController extends Controller
+class LayananKMVerifController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $layananSPLPs = LayananSPLP::paginate(3); // Ambil semua data dari tabel layanan_zoom
-        return view('admin.layananSPLP.index', compact('layananSPLPs'));
+        $layananKMs = LayananKontenMultimedia::all(); // Ambil semua data dari tabel layanan_zoom
+        return view('verifikator.layananKM.index', compact('layananKMs'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('welcome');
+        //
     }
 
     /**
@@ -32,14 +31,6 @@ class LayananSPLPController extends Controller
     {
         //
     }
-    public function downloadPDF(){
-        $mpdf = new \Mpdf\Mpdf();
-        $layananSPLPs = LayananSPLP::all();
-        $html = view('admin.layananSPLP.pdf', compact('layananSPLPs'))->render();
-        $mpdf->WriteHTML($html);
-        return $mpdf->Output('layanan_splp.pdf', 'D'); // 'D' untuk download, 'I' untuk inline view di browser
-    }
-   
 
     /**
      * Display the specified resource.

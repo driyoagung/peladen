@@ -32,9 +32,9 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd')
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd' || Auth::user()->role == 'verifikator')
             <li class="relative px-6 py-3">
-                @if (request()->routeIs('admin.layananZoom') || request()->routeIs('opd.layananZoom.create'))
+                @if (request()->routeIs('admin.layananZoom') || request()->routeIs('opd.layananZoom.create') || request()->routeIs('verifikator.layananZoom'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                 @endif
 
@@ -42,6 +42,8 @@
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('admin.layananZoom') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}" href="{{ route('admin.layananZoom') }}">
                 @elseif (Auth::user()->role == 'opd')
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('opd.layananZoom.create') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}" href="{{ route('opd.layananZoom.create') }}">
+                @elseif (Auth::user()->role == 'verifikator')
+                    <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('verifikator.layananZoom') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}" href="{{ route('verifikator.layananZoom') }}">
                 @endif
 
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -52,9 +54,9 @@
                 </a>
             </li>
         @endif   
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd')
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd'|| Auth::user()->role == 'verifikator')
             <li class="relative px-6 py-3">
-                @if (request()->routeIs('admin.layananVPN') || request()->routeIs('opd.layananVPN.create'))
+                @if (request()->routeIs('admin.layananVPN') || request()->routeIs('opd.layananVPN.create')|| request()->routeIs('verifikator.layananVPN'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                         aria-hidden="true"></span>
                 @endif
@@ -68,6 +70,11 @@
                     class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('opd.layananVPN.create') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
                     href="{{ route('opd.layananVPN.create') }}"
                 >
+                @elseif (Auth::user()->role == 'verifikator')
+                <a
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('verifikator.layananVPN') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
+                    href="{{ route('verifikator.layananVPN') }}"
+                >
                 @endif
 
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -78,7 +85,7 @@
                 </a>
             </li>
             @endif
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd')            
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd'|| Auth::user()->role == 'verifikator')            
             <li class="relative px-6 py-3">            
                 @if (request()->routeIs('admin.layananSPLP')|| request()->routeIs('opd.layananSPLP.create'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
@@ -94,6 +101,11 @@
                     class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('opd.layananSPLP.create') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
                     href="{{ route('opd.layananSPLP.create') }}"
                 >
+                @elseif (Auth::user()->role == 'verifikator')
+                <a
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('verifikator.layananSPLP') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
+                    href="{{ route('verifikator.layananSPLP') }}"
+                >
             @endif
 
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -104,9 +116,9 @@
                 </a>
             </li>
             @endif
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd')            
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd' | Auth::user()->role == 'verifikator')            
             <li class="relative px-6 py-3">
-                @if (request()->routeIs('admin.layananKM')|| request()->routeIs('opd.layananKM.create'))
+                @if (request()->routeIs('admin.layananKM')|| request()->routeIs('opd.layananKM.create')| request()->routeIs('verifikator.layananKM'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                         aria-hidden="true"></span>
                 @endif
@@ -120,6 +132,11 @@
                     class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('opd.layananKM.create') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
                     href="{{ route('opd.layananKM.create') }}"
                 >
+                @elseif (Auth::user()->role == 'verifikator')
+                <a
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('verifikator.layananKM') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
+                    href="{{ route('verifikator.layananKM') }}"
+                >
                 @endif
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M9 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v1M9 12H4m8 8V9h8v11h-8Zm0 0H9m8-4a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z"/>
@@ -128,9 +145,9 @@
                 </a>
             </li>
             @endif
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd')            
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd' || Auth::user()->role == 'verifikator')            
             <li class="relative px-6 py-3">
-                @if (request()->routeIs('admin.layananTTE')|| request()->routeIs('opd.layananTTE.create'))
+                @if (request()->routeIs('admin.layananTTE')|| request()->routeIs('opd.layananTTE.create')|| request()->routeIs('verifikator.layananTTE'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                         aria-hidden="true"></span>
                 @endif
@@ -143,6 +160,11 @@
                 <a
                     class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('opd.layananTTE.create') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
                     href="{{ route('opd.layananTTE.create') }}"
+                >
+                @elseif (Auth::user()->role == 'verifikator')
+                <a
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('verifikator.layananTTE') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
+                    href="{{ route('verifikator.layananTTE') }}"
                 >
                 @endif
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -175,12 +197,14 @@
         </ul>
         @if (Auth::user()->role == 'superadmin' || Auth::user()->role == 'superadmin')
         <div class="px-6 my-6">
+            <a href="{{ route('superadmin.users.index') }}">
             <button
                     class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
                 Create Users
                 <span class="ml-2" aria-hidden="true">+</span>                
             </button>
+        </a>
         </div>
         @endif
         
