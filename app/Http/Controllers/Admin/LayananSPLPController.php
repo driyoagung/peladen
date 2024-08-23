@@ -13,7 +13,7 @@ class LayananSPLPController extends Controller
      */
     public function index()
     {
-        $layananSPLPs = LayananSPLP::paginate(3); // Ambil semua data dari tabel layanan_zoom
+        $layananSPLPs = LayananSPLP::paginate(5); // Ambil semua data dari tabel layanan_zoom
         return view('admin.layananSPLP.index', compact('layananSPLPs'));
     }
 

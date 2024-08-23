@@ -13,7 +13,7 @@ class LayananVPNController extends Controller
      */
     public function index()
     {
-        $layananVPNs = LayananVPN::all(); // Ambil semua data dari tabel layanan_zoom
+        $layananVPNs = LayananVPN::paginate(5); // Ambil semua data dari tabel layanan_zoom
         return view('admin.layananVPN.index', compact('layananVPNs'));
     }
 

@@ -95,7 +95,17 @@
             </table>
         </div>
 
-        {{ $layananZooms->links() }}
+        <div class="flex flex-col px-4 py-3 text-sm font-medium text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+            <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">
+                    Menampilkan {{ $layananZooms->firstItem() }} hingga {{ $layananZooms->lastItem() }} dari {{ $layananZooms->total() }} hasil
+                </span>
+                <div class="flex items-center">
+                    <!-- Pagination Links -->
+                    {{ $layananZooms->links('pagination::tailwind') }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
