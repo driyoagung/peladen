@@ -15,7 +15,7 @@ class LayananZoomController extends Controller
     // Menampilkan daftar semua data LayananZoom
     public function index()
     {
-        $layananZooms = LayananZoom::all(); // Ambil semua data dari tabel layanan_zoom
+        $layananZooms = LayananZoom::paginate(5); // Ambil semua data dari tabel layanan_zoom
         return view('admin.layananZoom.index', compact('layananZooms'));
     }
 
