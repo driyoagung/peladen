@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Verifikator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\LayananSPLP;
+use App\Models\PerangkatDaerah;
+use App\Models\StatusPermohonan;
 use Illuminate\Http\Request;
 
 class LayananSPLPVerifController extends Controller
@@ -13,7 +16,7 @@ class LayananSPLPVerifController extends Controller
      */
     public function index()
     {
-        $layananSPLPs = LayananSPLP::paginate(3); // Ambil semua data dari tabel layanan_zoom
+        $layananSPLPs = LayananSPLP::paginate(5); // Ambil semua data dari tabel layanan_zoom
         return view('verifikator.layananSPLP.index', compact('layananSPLPs'));
     }
 
@@ -44,9 +47,42 @@ class LayananSPLPVerifController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function updateStatus(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|string|in:Pending,Approved,Rejected,In Progress,Completed',
+    ]);
+
+    // Find the layananSPLP instance
+    $layananSPLP = layananSPLP::findOrFail($id);
+
+    // Find the status ID based on the status name
+    $status = StatusPermohonan::where('status', $request->status)->first();
+
+    if (!$status) {
+        return redirect()->back()->with('error', 'Invalid status selected.');
+    }
+
+    // Update the status_permohonan_id
+    $layananSPLP->status_permohonan_id = $status->id;
+    $layananSPLP->save();
+
+    return redirect()->back()->with('success', 'Status updated successfully.');
+}
+    public function edit($id)
     {
-        //
+        $layananSPLP = layananSPLP::find($id); // Temukan data berdasarkan ID
+        
+        if (!$layananSPLP) {
+            return redirect()->route('verifikator.layananSPLP')->with('error', 'Data tidak ditemukan!');
+        }
+
+        $kategoris = Kategori::where('id', 4)->first();
+
+        $perangkatDaerahs = PerangkatDaerah::all();
+        $statusPermohonans = StatusPermohonan::all();
+
+        return view('verifikator.layananSPLP.edit', compact('layananSPLP', 'kategoris', 'perangkatDaerahs', 'statusPermohonans'));
     }
 
     /**

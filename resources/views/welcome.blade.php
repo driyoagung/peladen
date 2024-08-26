@@ -178,9 +178,19 @@
 
     <div id="{{ $kategori->id }}" class="custom-background bg-gradient-to-r  {{ $backgroundClass }} flex flex-col md:flex-row items-center justify-center px-6 md:px-12 lg:px-24 py-14 delay-[300ms] duration-[600ms] taos:translate-y-[200px] taos:opacity-0" data-taos-offset="300">
         <div class="flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-8 p-4 md:p-8">
-            <div class="flex-shrink-0">
-                <img src="{{ asset('assets/img/home-side.png') }}" alt="WWW" class="h-32 w-32 md:h-40 md:w-40" />
-            </div>
+          <div class="flex-shrink-0">
+            @php
+                $imagePath = match($kategori->kategori_layanan) {
+                    'Layanan VPN' => 'assets/img/vpn.jpg',
+                    'Layanan TTE' => 'assets/img/tte.jpg',
+                    'Layanan Zoom' => 'assets/img/zoom.jpg',
+                    'Layanan SPLP' => 'assets/img/splp.jpg',
+                    'Layanan Konten Multimedia' => 'assets/img/multimedia.jpg',
+                    default => 'assets/img/default-image.png',
+                };
+            @endphp
+            <img src="{{ asset($imagePath) }}" alt="Kategori Layanan" class="h-32 w-auto md:h-40 md:w-auto" />
+        </div>
             <div>
                 <h2 class="text-xl md:text-2xl font-bold mb-4">{{ $kategori->kategori_layanan }}</h2>
                 <p class="text-gray-700 mb-6 text-sm md:text-base">

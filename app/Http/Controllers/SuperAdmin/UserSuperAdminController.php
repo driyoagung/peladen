@@ -30,12 +30,14 @@ class UserSuperAdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'role' => 'required|string|in:superadmin,admin,opd,verifikator',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         return redirect()->route('superadmin.users.index')->with('success', 'User created successfully.');
@@ -53,12 +55,14 @@ class UserSuperAdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8',
+            'role' => 'required|string|in:superadmin,admin,opd,verifikator',
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'role' => $request->role,
         ]);
 
         return redirect()->route('superadmin.users.index')->with('success', 'User updated successfully.');

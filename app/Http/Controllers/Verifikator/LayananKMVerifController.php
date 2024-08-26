@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Verifikator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\LayananKontenMultimedia;
+use App\Models\PerangkatDaerah;
+use App\Models\StatusPermohonan;
 use Illuminate\Http\Request;
 
 class LayananKMVerifController extends Controller
@@ -13,7 +16,7 @@ class LayananKMVerifController extends Controller
      */
     public function index()
     {
-        $layananKMs = LayananKontenMultimedia::all(); // Ambil semua data dari tabel layanan_zoom
+        $layananKMs = LayananKontenMultimedia::paginate(5); // Ambil semua data dari tabel layanan_zoom
         return view('verifikator.layananKM.index', compact('layananKMs'));
     }
     /**
@@ -43,9 +46,42 @@ class LayananKMVerifController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function updateStatus(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|string|in:Pending,Approved,Rejected,In Progress,Completed',
+    ]);
+
+    // Find the layananKM instance
+    $layananKM = LayananKontenMultimedia::findOrFail($id);
+
+    // Find the status ID based on the status name
+    $status = StatusPermohonan::where('status', $request->status)->first();
+
+    if (!$status) {
+        return redirect()->back()->with('error', 'Invalid status selected.');
+    }
+
+    // Update the status_permohonan_id
+    $layananKM->status_permohonan_id = $status->id;
+    $layananKM->save();
+
+    return redirect()->back()->with('success', 'Status updated successfully.');
+}
+    public function edit($id)
     {
-        //
+        $layananKM = LayananKontenMultimedia::find($id); // Temukan data berdasarkan ID
+        
+        if (!$layananKM) {
+            return redirect()->route('verifikator.layananKM')->with('error', 'Data tidak ditemukan!');
+        }
+
+        $kategoris = Kategori::where('id', 5)->first();
+
+        $perangkatDaerahs = PerangkatDaerah::all();
+        $statusPermohonans = StatusPermohonan::all();
+
+        return view('verifikator.layananKM.edit', compact('layananKM', 'kategoris', 'perangkatDaerahs', 'statusPermohonans'));
     }
 
     /**

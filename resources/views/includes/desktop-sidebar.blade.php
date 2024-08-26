@@ -145,9 +145,9 @@
                 </a>
             </li>
             @endif
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd' || Auth::user()->role == 'verifikator')            
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin' || Auth::user()->role == 'opd' || Auth::user()->role == 'verifikator')            
             <li class="relative px-6 py-3">
-                @if (request()->routeIs('admin.layananTTE')|| request()->routeIs('opd.layananTTE.create')|| request()->routeIs('verifikator.layananTTE'))
+                @if (request()->routeIs('admin.layananTTE') || request()->routeIs('opd.layananTTE.create') || request()->routeIs('verifikator.layananTTE') || request()->routeIs('verifikator.layananTTE.*'))
                     <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
                         aria-hidden="true"></span>
                 @endif
@@ -163,7 +163,7 @@
                 >
                 @elseif (Auth::user()->role == 'verifikator')
                 <a
-                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('verifikator.layananTTE') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
+                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ request()->routeIs('verifikator.layananTTE') || request()->routeIs('verifikator.layananTTE.*') ? 'text-gray-800 dark:text-gray-100 font-bold' : 'text-gray-500' }}"
                     href="{{ route('verifikator.layananTTE') }}"
                 >
                 @endif
@@ -173,7 +173,8 @@
                     <span class="ml-4">Layanan TTE</span>
                 </a>
             </li>
-            @endif
+        @endif
+        
         @if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin')            
             <li class="relative px-6 py-3">
                 @if (request()->routeIs('admin.service'))

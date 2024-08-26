@@ -139,6 +139,7 @@ Route::middleware(['auth', 'role:verifikator'])->prefix('verifikator')->group(fu
   Route::get('/dashboard', [DashboardVerifController::class, 'index'])->name('verifikator.dashboard');
   Route::get('/layananZoom/{id}/edit', [LayananZoomVerifController::class, 'edit'])->name('verifikator.layananZoom.edit');
   Route::put('/layananZoom/{id}', [LayananZoomVerifController::class, 'update'])->name('verifikator.layananZoom.update');
+  Route::put('/layananZoom/{id}/status', [LayananZoomVerifController::class, 'updateStatus'])->name('verifikator.layananZoom.updateStatus');
   Route::delete('/layananZoom/{id}', [LayananZoomVerifController::class, 'destroy'])->name('verifikator.layananZoom.destroy');
 
 
@@ -152,17 +153,21 @@ Route::middleware(['auth', 'role:verifikator'])->prefix('verifikator')->group(fu
   Route::get('/layananVPN/{id}/edit', [LayananVPNVerifController::class, 'edit'])->name('verifikator.layananVPN.edit');
   Route::put('/layananVPN/{id}', [LayananVPNVerifController::class, 'update'])->name('verifikator.layananVPN.update');
   Route::delete('/layananVPN/{id}', [LayananVPNVerifController::class, 'destroy'])->name('verifikator.layananVPN.destroy');
+  Route::put('/layananVPN/{id}/status', [LayananVPNVerifController::class, 'updateStatus'])->name('verifikator.layananVPN.updateStatus');
 
   // Routes for Layanan SPLP Verif
   Route::get('/layananSPLP', [LayananSPLPVerifController::class, 'index'])->name('verifikator.layananSPLP');
   Route::get('/layananSPLP/{id}/edit', [LayananSPLPVerifController::class, 'edit'])->name('verifikator.layananSPLP.edit');
   Route::put('/layananSPLP/{id}', [LayananSPLPVerifController::class, 'update'])->name('verifikator.layananSPLP.update');
+  Route::put('/layananSPLP/{id}/status', [LayananSPLPVerifController::class, 'updateStatus'])->name('verifikator.layananSPLP.updateStatus');
   Route::delete('/layananSPLP/{id}', [LayananSPLPVerifController::class, 'destroy'])->name('verifikator.layananSPLP.destroy');
+  
 
   // Routes for Layanan TTE Verif
   Route::get('/layananTTE', [LayananTTEVerifController::class, 'index'])->name('verifikator.layananTTE');
   Route::get('/layananTTE/{id}/edit', [LayananTTEVerifController::class, 'edit'])->name('verifikator.layananTTE.edit');
   Route::put('/layananTTE/{id}', [LayananTTEVerifController::class, 'update'])->name('verifikator.layananTTE.update');
+  Route::put('/layananTTE/{id}/status', [LayananTTEVerifController::class, 'updateStatus'])->name('verifikator.layananTTE.updateStatus');
   Route::delete('/layananTTE/{id}', [LayananTTEVerifController::class, 'destroy'])->name('verifikator.layananTTE.destroy');
 
   // Routes for Layanan KM Verif
@@ -170,6 +175,7 @@ Route::middleware(['auth', 'role:verifikator'])->prefix('verifikator')->group(fu
   Route::get('/layananKM/{id}/edit', [LayananKMVerifController::class, 'edit'])->name('verifikator.layananKM.edit');
   Route::put('/layananKM/{id}', [LayananKMVerifController::class, 'update'])->name('verifikator.layananKM.update');
   Route::delete('/layananKM/{id}', [LayananKMVerifController::class, 'destroy'])->name('verifikator.layananKM.destroy');
+  Route::put('/layananKM/{id}/status', [LayananKMVerifController::class, 'updateStatus'])->name('verifikator.layananKM.updateStatus');
 });
 
 

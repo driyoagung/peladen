@@ -2,14 +2,14 @@
 @section('content')
 <div class="container px-6 mx-auto grid">
     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        Edit Layanan Zoom
+        Edit Layanan SPLP
     </h2>
 
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
         Edit Form
     </h4>
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <form action="{{ route('admin.layananZoom.update', $layananZoom->id) }}" method="POST">
+        <form action="{{ route('admin.layananSPLP.update', $layananSPLP->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -18,7 +18,7 @@
                 <input
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     name="nama_pemohon"
-                    value="{{ old('nama_pemohon', $layananZoom->nama_pemohon) }}"
+                    value="{{ old('nama_pemohon', $layananSPLP->nama_pemohon) }}"
                     required
                 />
             </label>
@@ -28,27 +28,27 @@
                 <input
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     name="nip_nik"
-                    value="{{ old('nip_nik', $layananZoom->nip_nik) }}"
+                    value="{{ old('nip_nik', $layananSPLP->nip_nik) }}"
                     required
                 />
             </label>
 
             <label class="block text-sm mt-4">
-                <span class="text-gray-700 dark:text-gray-400">Lokasi</span>
+                <span class="text-gray-700 dark:text-gray-400">Nama API</span>
                 <input
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    name="lokasi"
-                    value="{{ old('lokasi', $layananZoom->lokasi) }}"
+                    name="nama_api"
+                    value="{{ old('nama_api', $layananSPLP->nama_api) }}"
                     required
                 />
             </label>
 
             <label class="block text-sm mt-4">
-                <span class="text-gray-700 dark:text-gray-400">Acara</span>
+                <span class="text-gray-700 dark:text-gray-400">Nama Aplikasi Website</span>
                 <input
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    name="acara"
-                    value="{{ old('acara', $layananZoom->acara) }}"
+                    name="nama_aplikasi_website"
+                    value="{{ old('nama_aplikasi_website', $layananSPLP->nama_aplikasi_website) }}"
                     required
                 />
             </label>
@@ -58,7 +58,7 @@
                 <input
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     name="unit_kerja"
-                    value="{{ old('unit_kerja', $layananZoom->unit_kerja) }}"
+                    value="{{ old('unit_kerja', $layananSPLP->unit_kerja) }}"
                     required
                 />
             </label>
@@ -69,7 +69,7 @@
                     type="date"
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     name="tanggal_permohonan"
-                    value="{{ old('tanggal_permohonan', $layananZoom->tanggal_permohonan) }}"
+                    value="{{ old('tanggal_permohonan', $layananSPLP->tanggal_permohonan) }}"
                     required
                 />
             </label>
@@ -80,22 +80,20 @@
                     type="time"
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     name="waktu_permohonan"
-                    value="{{ old('waktu_permohonan', $layananZoom->waktu_permohonan ? \Carbon\Carbon::parse($layananZoom->waktu_permohonan)->format('H:i') : 'N/A') }}"
+                    value="{{ old('waktu_permohonan', $layananSPLP->waktu_permohonan ? \Carbon\Carbon::parse($layananSPLP->waktu_permohonan)->format('H:i') : 'N/A') }}"
                     required
                 />
             </label>
 
             <label class="block text-sm mt-4">
                 <span class="text-gray-700 dark:text-gray-400">Kategori</span>
-                <select
-                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    name="kategori_id"
-                    required
-                >
-                    @foreach($kategoris as $kategori)
-                        <option value="{{ $kategori->id }}" {{ $layananZoom->kategori_id == $kategori->id ? 'selected' : '' }}>{{ $kategori->kategori_layanan }}</option>
-                    @endforeach
-                </select>
+                <input
+                    type="text"
+                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-input focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    value="{{ $kategoris->kategori_layanan }}"
+                    disabled
+                />
+                <input type="hidden" name="kategori_id" value="{{ $kategoris->id }}">
             </label>
 
             <label class="block text-sm mt-4">
@@ -106,7 +104,7 @@
                     required
                 >
                     @foreach($perangkatDaerahs as $perangkatDaerah)
-                        <option value="{{ $perangkatDaerah->id }}" {{ $layananZoom->perangkat_daerah_id == $perangkatDaerah->id ? 'selected' : '' }}>{{ $perangkatDaerah->perangkat_daerah }}</option>
+                        <option value="{{ $perangkatDaerah->id }}" {{ $layananSPLP->perangkat_daerah_id == $perangkatDaerah->id ? 'selected' : '' }}>{{ $perangkatDaerah->perangkat_daerah }}</option>
                     @endforeach
                 </select>
             </label>
@@ -119,7 +117,7 @@
                     required
                 >
                     @foreach($statusPermohonans as $statusPermohonan)
-                        <option value="{{ $statusPermohonan->id }}" {{ $layananZoom->status_permohonan_id == $statusPermohonan->id ? 'selected' : '' }}>{{ $statusPermohonan->status }}</option>
+                        <option value="{{ $statusPermohonan->id }}" {{ $layananSPLP->status_permohonan_id == $statusPermohonan->id ? 'selected' : '' }}>{{ $statusPermohonan->status }}</option>
                     @endforeach
                 </select>
             </label>

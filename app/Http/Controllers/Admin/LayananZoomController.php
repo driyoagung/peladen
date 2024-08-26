@@ -61,7 +61,7 @@ class LayananZoomController extends Controller
             'acara' => 'required|string|max:255',
             'unit_kerja' => 'required|string|max:255',
             'tanggal_permohonan' => 'required|date',
-            'waktu_permohonan' => 'required|date_format:H:i:s',
+            'waktu_permohonan' => 'required|date_format:H:i',
             'kategori_id' => 'required|integer',
             'perangkat_daerah_id' => 'required|integer',
             'status_permohonan_id' => 'required|integer',
