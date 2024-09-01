@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class DashboardController extends Controller
     public function __invoke()
     {
         $user = User::where("email","=", request("email"))->first();
-        return view('admin.index');
+        $kategoris = Kategori::all();
+        return view('admin.index', compact('user','kategoris'));
     }
 
     /**

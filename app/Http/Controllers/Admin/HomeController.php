@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,8 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $totalLayananZoom = DB::table('layanan_zoom')->count();
-        return view('admin.index',compact('user','totalLayananZoom'));
+        $kategoris = Kategori::all();
+
+        return view('admin.index',compact('user','totalLayananZoom','kategoris'));
     }
 }
