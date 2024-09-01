@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' => 'admin.
     Route::get('/layananTTE/{id}/edit', [LayananTTEController::class, 'edit'])->name('layananTTE.edit');
     Route::put('/layananTTE/{id}', [LayananTTEController::class, 'update'])->name('layananTTE.update');
     Route::delete('/layananTTE/{id}', [LayananTTEController::class, 'destroy'])->name('layananTTE.destroy');
+   
 
 
 
@@ -176,6 +177,9 @@ Route::middleware(['auth', 'role:verifikator'])->prefix('verifikator')->group(fu
   Route::put('/layananKM/{id}', [LayananKMVerifController::class, 'update'])->name('verifikator.layananKM.update');
   Route::delete('/layananKM/{id}', [LayananKMVerifController::class, 'destroy'])->name('verifikator.layananKM.destroy');
   Route::put('/layananKM/{id}/status', [LayananKMVerifController::class, 'updateStatus'])->name('verifikator.layananKM.updateStatus');
+});
+Route::get('/manualbook', function () {
+  return view('manualbook');
 });
 
 

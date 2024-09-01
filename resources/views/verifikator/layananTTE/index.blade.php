@@ -16,7 +16,7 @@
 
     <!-- With actions -->
     <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-        Table Layanan Zoom
+        Table Layanan TTE
     </h4>
     
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
