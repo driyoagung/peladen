@@ -16,7 +16,7 @@ class LayananZoomVerifController extends Controller
      */
     public function index()
     {
-        $layananZooms = LayananZoom::paginate(5);
+        $layananZooms = LayananZoom::orderBy('created_at', 'desc')->paginate(5);
         $statusOptions = ['Pending', 'Approved', 'Rejected', 'In Progress', 'Completed']; // Ambil semua data dari tabel layanan_zoom
         return view('verifikator.layananZoom.index', compact('layananZooms','statusOptions'));
     }

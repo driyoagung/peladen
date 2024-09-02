@@ -17,7 +17,7 @@ class LayananTTEController extends Controller
     public function index()
     {
         //
-        $layananTTEs = LayananTTE::paginate(5); // Ambil semua data dari tabel LayananTTE
+        $layananTTEs = LayananTTE::orderBy('created_at', 'desc')->paginate(5); // Ambil semua data dari tabel LayananTTE
         return view('admin.layananTTE.index', compact('layananTTEs'));
     }
 

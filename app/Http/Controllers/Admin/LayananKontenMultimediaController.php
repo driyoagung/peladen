@@ -16,7 +16,7 @@ class LayananKontenMultimediaController extends Controller
      */
     public function index()
     {
-        $layananKMs = LayananKontenMultimedia::paginate(5); // Ambil semua data dari tabel layanan_zoom
+        $layananKMs = LayananKontenMultimedia::orderBy('created_at', 'desc')->paginate(5); // Ambil semua data dari tabel layanan_zoom
         return view('admin.layananKM.index', compact('layananKMs'));
     }
 

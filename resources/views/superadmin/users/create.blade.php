@@ -40,10 +40,10 @@
 
             <label class="block text-sm mt-4">
                 <span class="text-gray-700 dark:text-gray-400">Role</span>
-                <select class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 form-select" name="role_id" required>
-                    @foreach($users as $user)
-                        <option value="sa" >
-                            {{ $user->role }}
+                <select class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 form-select" name="role" required>
+                    @foreach(['superadmin', 'admin', 'opd', 'verifikator'] as $roleOption)
+                        <option value="{{ $roleOption }}" {{ old('role', $user->role ?? '') == $roleOption ? 'selected' : '' }}>
+                            {{ ucfirst($roleOption) }}
                         </option>
                     @endforeach
                 </select>

@@ -16,7 +16,7 @@ class LayananVPNVerifController extends Controller
      */
     public function index()
     {
-        $layananVPNs = LayananVPN::paginate(5); // Ambil semua data dari tabel layanan_zoom
+        $layananVPNs = LayananVPN::orderBy('created_at', 'desc')->paginate(5);
         return view('verifikator.layananVPN.index', compact('layananVPNs'));
     }
 

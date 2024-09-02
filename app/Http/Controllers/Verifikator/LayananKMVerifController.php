@@ -16,7 +16,7 @@ class LayananKMVerifController extends Controller
      */
     public function index()
     {
-        $layananKMs = LayananKontenMultimedia::paginate(5); // Ambil semua data dari tabel layanan_zoom
+        $layananKMs = LayananKontenMultimedia::orderBy('created_at', 'desc')->paginate(5); // 
         return view('verifikator.layananKM.index', compact('layananKMs'));
     }
     /**

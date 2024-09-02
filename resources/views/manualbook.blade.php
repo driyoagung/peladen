@@ -136,8 +136,27 @@
             Berikut adalah alur untuk mengajukan permohonan rekomendasi dan permohonan layanan
             lainnya:
           </p>
+          <p>1. Login sebagai OPD dengan menggunakan username dan password yang sudah dibuatkan oleh admin</p>
           <img
-            src="path/to/diagram.png"
+            src="{{ asset('assets/img/login.png') }}"
+            alt="Diagram Alur Permohonan"
+            class="w-full rounded-lg shadow-md"
+          />
+          <p class="mt-10">2. Pilih Layanan yang ingin diajukan</p>
+          <img
+            src="{{ asset('assets/img/opd1.png') }}"
+            alt="Diagram Alur Permohonan"
+            class="w-full rounded-lg shadow-md"
+          />
+          <p class="mt-10">3. Masukan data diri dengan lengkap</p>
+          <img
+            src="{{ asset('assets/img/opd2.png') }}"
+            alt="Diagram Alur Permohonan"
+            class="w-full rounded-lg shadow-md"
+          />
+          <p class="mt-10">4. Tunggu konfirmasi lebih lanjut setelah mengajukan layanan</p>
+          <img
+            src="{{ asset('assets/img/opd3.png') }}"
             alt="Diagram Alur Permohonan"
             class="w-full rounded-lg shadow-md"
           />

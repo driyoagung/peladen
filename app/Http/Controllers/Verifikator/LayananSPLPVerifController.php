@@ -16,7 +16,7 @@ class LayananSPLPVerifController extends Controller
      */
     public function index()
     {
-        $layananSPLPs = LayananSPLP::paginate(5); // Ambil semua data dari tabel layanan_zoom
+        $layananSPLPs = LayananSPLP::orderBy('created_at', 'desc')->paginate(5); 
         return view('verifikator.layananSPLP.index', compact('layananSPLPs'));
     }
 
